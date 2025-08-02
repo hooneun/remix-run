@@ -4,7 +4,7 @@ import prisma from "~/lib/prisma"
 export async function loader() {
 	const posts = await prisma.post.findMany({
 		include: {
-			author: true
+			user: true
 		}
 	})
 
@@ -23,7 +23,7 @@ export default function Home({loaderData}: Route.ComponentProps) {
 					<li key={post.id}>
 						<span className="font-semibold">{post.title}</span>
 						<span className="text-sm text-gray-600 ml-2">
-							by {post.author.name}
+							by {post.user.name}
 						</span>
 					</li>
 				))}
